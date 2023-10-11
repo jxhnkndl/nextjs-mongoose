@@ -3,6 +3,20 @@ import mongoose from 'mongoose';
 import connectDB from '../../lib/connection';
 import Concert from '../../models/Concert';
 
+export async function GET(req) {
+  console.log(123)
+  try {
+    await connectDB();
+
+    const concerts = await Concert.find({});
+
+    return NextResponse.json({ msg: 'Success', data: concerts });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ msg: 'Internal server error', error: error });
+  }
+}
+
 export async function POST(req) {
   const { date, venue, city, doors, show } = await req.json();
 
@@ -10,7 +24,7 @@ export async function POST(req) {
 
   try {
     await connectDB();
-    
+
     const concert = await Concert.create({ date, venue, city, doors, show });
 
     return NextResponse.json({ msg: 'Concert created', data: concert });
