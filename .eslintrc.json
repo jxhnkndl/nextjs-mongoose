@@ -1,0 +1,5 @@
+{
+  "extends": "next/core-web-vitals",
+  "react/no-unescaped-entities": false,
+  "react/no-unused-vars": false
+}
