@@ -54,3 +54,21 @@ header {
 .location p:first-of-type {
   @apply font-semibold;
 }
+
+/* FORM */
+
+form {
+  @apply md:w-3/4 mb-10 mx-auto;
+}
+
+input {
+  @apply w-full p-2 my-2;
+  @apply rounded;
+}
+
+.btn {
+  @apply w-full p-3 my-2;
+  @apply bg-navy text-light;
+  @apply rounded;
+  @apply uppercase;
+}
