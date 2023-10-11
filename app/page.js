@@ -2,7 +2,26 @@ import Image from 'next/image';
 import Concert from './components/Concert';
 import Form from './components/Form';
 
-export default function Home() {
+async function fetchConcerts() {
+  try {
+    const res = await fetch(`${process.env.BASE_URL}/api/concerts`, {
+      // This helps refresh page to load new dynamically created data
+      next: {
+        // Number of secons to wait until fresh data is fetched
+        revalidate: 60,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export default async function Home() {
+  const concerts = await fetchConcerts();
+  console.log(concerts);
+
   return (
     <>
       <header>
@@ -11,9 +30,9 @@ export default function Home() {
       </header>
       <main>
         <Form />
-        <Concert />
-        <Concert />
-        <Concert />
+        {concerts.data.map((concert) => (
+          <Concert key={concert._id} concert={concert} />
+        ))}
       </main>
     </>
   );
