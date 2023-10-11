@@ -2,25 +2,31 @@ import Image from 'next/image';
 import Concert from './components/Concert';
 import Form from './components/Form';
 
-// async function fetchConcerts() {
-//   try {
-//     const res = await fetch(`${process.env.BASE_URL || 'https://vercel'}/api/concerts`, {
-//       // This helps refresh page to load new dynamically created data
-//       next: {
-//         // Number of secons to wait until fresh data is fetched
-//         revalidate: 60,
-//       },
-//     });
-//     const data = await res.json();
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+async function fetchConcerts() {
+  try {
+    const res = await fetch(
+      `${
+        'https://nextjs-mongoose-eight.vercel.app/api/concerts' ||
+        process.env.BASE_URL
+      }/api/concerts`,
+      {
+        // This helps refresh page to load new dynamically created data
+        next: {
+          // Number of secons to wait until fresh data is fetched
+          revalidate: 60,
+        },
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export default async function Home() {
-  // const concerts = await fetchConcerts();
-  // console.log(concerts);
+  const concerts = await fetchConcerts();
+  console.log(concerts);
 
   return (
     <>
@@ -30,9 +36,9 @@ export default async function Home() {
       </header>
       <main>
         <Form />
-        {/* {concerts.data.map((concert) => (
+        {concerts.data.map((concert) => (
           <Concert key={concert._id} concert={concert} />
-        ))} */}
+        ))}
       </main>
     </>
   );
