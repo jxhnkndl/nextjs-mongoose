@@ -4,7 +4,7 @@ import Form from './components/Form';
 
 async function fetchConcerts() {
   try {
-    const res = await fetch(`${process.env.VERCEL_URL || process.env.BASE_URL}/api/concerts`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL || process.env.BASE_URL}/api/concerts`, {
       // This helps refresh page to load new dynamically created data
       next: {
         // Number of secons to wait until fresh data is fetched
