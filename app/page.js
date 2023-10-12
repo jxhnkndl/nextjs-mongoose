@@ -5,7 +5,7 @@ import Form from './components/Form';
 async function fetchConcerts() {
   try {
     const res = await fetch(
-      `${process.env.PROD_BASE_URL}}/api/concerts`,
+      `${process.env.PROD_BASE_URL}/api/concerts`,
       {
         // This helps refresh page to load new dynamically created data
         next: {
