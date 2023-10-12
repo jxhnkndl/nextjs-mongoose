@@ -5,10 +5,7 @@ import Form from './components/Form';
 async function fetchConcerts() {
   try {
     const res = await fetch(
-      `${
-        'https://nextjs-mongoose-eight.vercel.app/api/concerts' ||
-        process.env.BASE_URL
-      }/api/concerts`,
+      'https://nextjs-mongoose-eight.vercel.app/api/concerts',
       {
         // This helps refresh page to load new dynamically created data
         next: {
