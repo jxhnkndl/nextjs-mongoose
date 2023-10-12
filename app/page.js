@@ -9,8 +9,8 @@ async function fetchConcerts() {
       {
         // This helps refresh page to load new dynamically created data
         next: {
-          // Number of secons to wait until fresh data is fetched
-          revalidate: 60,
+          // Number of seconds to wait until fresh data is fetched
+          revalidate: 1,
         },
       }
     );
